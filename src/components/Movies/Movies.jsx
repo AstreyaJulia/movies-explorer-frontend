@@ -6,7 +6,7 @@ import './Movies.css';
 import films from '../../utils/beatfilm-movies.json';
 
 const Movies = () => {
-  return <MoviesLayout class='movies' films={films.slice(0, 16)}/>
+  return <MoviesLayout films={films.slice(0, 16)}/>
 };
 
 export default Movies;

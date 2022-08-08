@@ -47,7 +47,7 @@ const MoviesLayout = (props) => {
           </Navigation.Mobile>
         </Navigation>
       </Header>
-      <main className={props.class}>
+      <main className='movies'>
         <SearchForm/>
         {loader}
         <MoviesCardList films={props.films} saved={props.saved}/>

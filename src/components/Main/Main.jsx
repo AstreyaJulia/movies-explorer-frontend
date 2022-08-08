@@ -15,7 +15,7 @@ const Main = () => {
   /** Стейт данных текущего пользователя (временно)
    * {name: 'Имя', email: 'эл. почта'} */
   /* FIXME временно, удалить */
-  const [currentUser, setCurrentUser] = React.useState({});
+  const [currentUser, setCurrentUser] = React.useState({name: "Виталий", email: "pochta@yandex.ru"}); /* TODO проверить без авторизации: изменить начальный стейт на пустой объект {} */
 
   return (
     <>

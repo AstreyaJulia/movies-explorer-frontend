@@ -22,7 +22,12 @@
 .navigation__burger-button {
   background: none;
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: opacity .3s linear;
+  width: 44px;
+  height: 44px;
 }
 
 .navigation__burger-button_close {

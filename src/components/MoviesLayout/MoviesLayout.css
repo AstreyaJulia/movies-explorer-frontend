@@ -1,0 +1,9 @@
+.movies {
+  min-height: calc(100vh - 74px - 171px);
+}
+
+@media screen and (max-width: 320px) {
+  .movies {
+    min-height: calc(100vh - 74px - 270px);
+  }
+}
