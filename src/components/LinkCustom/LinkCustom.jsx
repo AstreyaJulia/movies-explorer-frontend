@@ -39,7 +39,6 @@ const LinkCustom = (props) => {
         {props.children}
       </a>)
     }
-
   return linkType[props.type];
 };
 

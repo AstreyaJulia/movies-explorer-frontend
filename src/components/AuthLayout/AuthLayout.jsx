@@ -2,10 +2,11 @@ import React from 'react';
 import './AuthLayout.css';
 import Container from "../Container/Container";
 import {classNames} from "../../utils/helpers";
+import LinkCustom from "../LinkCustom/LinkCustom";
 
 const AuthLayout = (props) => {
 
-  const [name, setName] = React.useState("");
+  const [name, setName] = React.useState("Виталий");
   const [email, setEmail] = React.useState("pochta@yandex.ru");
   const [password, setPassword] = React.useState("какой-топароль");
 
@@ -118,6 +119,23 @@ const AuthLayout = (props) => {
           >
             {errorStates.password || ''}
           </span>
+          <div className='auth__input-group'>
+            {props.action === 'register' ?
+              <>
+                <button className='auth_button' type='submit'>Зарегистрироваться</button>
+                <p className='auth__action'>Уже зарегистрированы?
+                  <LinkCustom type='route' to='/signin' class='auth__action-link' text='Войти' />
+                </p>
+              </>
+              :
+              <>
+                <button className='auth_button' type='submit'>Войти</button>
+                <p className='auth__action'>Ещё не зарегистрированы?
+                  <LinkCustom type='route' to='/signup' class='auth__action-link' text='Регистрация' />
+                </p>
+              </>
+            }
+          </div>
         </form>
       </Container>
     </main>
