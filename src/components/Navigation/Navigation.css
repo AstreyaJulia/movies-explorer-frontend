@@ -1,0 +1,226 @@
+/* Скрытие десктопного меню на малых разрешениях */
+.navigation__menu_desktop {
+  display: flex;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation__menu_desktop {
+    display: none;
+  }
+}
+
+.navigation__menu_mobile {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation__menu_mobile {
+    display: flex;
+  }
+}
+
+.navigation__burger-button {
+  background: none;
+  border: none;
+  transition: opacity .3s linear;
+}
+
+.navigation__burger-button_close {
+  width: 40px;
+  height: 40px;
+  align-self: end;
+  margin: 13px 13px 0 auto;
+}
+
+.navigation__burger-button:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+/* Меню */
+.navigation__burger-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  transition: all .3s linear;
+}
+
+.navigation__burger-nav {
+  padding: 99px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: calc(100vh - 99px - 40px - 13px);
+}
+
+.navigation__burger-nav_top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: revert;
+  gap: 24px;
+}
+
+.navigation__burger-nav_bottom {
+  margin: auto auto 48px auto;
+  justify-content: revert;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation__burger-container {
+    width: 520px;
+    min-height: 100vh;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .navigation__burger-container {
+    width: 100%;
+  }
+}
+
+/* Оверлей */
+.navigation__burger-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100vh;
+  transition: all .3s linear;
+}
+
+@media screen and (max-width: 520px) {
+  .navigation__burger-overlay {
+    display: none;
+  }
+}
+
+.navigation-menu__link {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.22;
+  padding: 0 0 9px;
+  color: #000000;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation-menu__link {
+    padding: 0 0 4px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .navigation-menu__link {
+    padding: 0 0 7px;
+  }
+}
+
+.navigation-menu__link:active {
+  border-bottom: 2px solid #000000;
+  padding: 0 0 7px;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation-menu__link:active {
+    padding: 0 0 2px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .navigation-menu__link:active {
+    padding: 0 0 5px;
+  }
+}
+
+.navigation-menu__link_active {
+  border-bottom: 2px solid #000000;
+  padding: 0 0 7px;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation-menu__link_active {
+    padding: 0 0 2px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .navigation-menu__link_active {
+    padding: 0 0 5px;
+  }
+}
+
+.navigation__burger-container {
+  display: flex;
+  align-items: center;
+  background-color: #FFFFFF;
+}
+
+.navigation-menu__button-outline {
+  padding: 8px 16px;
+  border: 2px solid #FFFFFF;
+  color: #FFFFFF;
+  border-radius: 20px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row-reverse;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.14;
+  transition: opacity .3s linear;
+}
+
+.navigation-menu__button-outline:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.navigation-menu__button-green {
+  padding: 8px 20px;
+  color: #000000;
+  background-color: #2BE080;
+  border-radius: 3px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+}
+
+.navigation-menu__button-green:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.navigation-menu__button-white {
+  height: 30px;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.14;
+  text-decoration: none;
+}
+
+.navigation-menu__icon-account {
+  margin-right: 8px;
+}
+
+.navigation-menu__icon-user {
+  width: 30px;
+  height: 30px;
+  margin: 0 0 0 13px;
+}

@@ -1,0 +1,8 @@
+@import url('./vendor/normalize.css');
+@import url('./fonts/fonts.css');
+
+/* Mozilla placeholder opacity fix*/
+/* https://github.com/necolas/normalize.css/issues/741 */
+::-moz-placeholder {
+  opacity: 1
+}

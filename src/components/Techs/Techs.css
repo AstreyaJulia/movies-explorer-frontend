@@ -1,0 +1,126 @@
+.techs {
+background-color: #F5F5F5;
+}
+
+.techs__container {
+  padding: 90px 50px;
+}
+
+@media screen and (max-width: 600px) {
+  .techs__container {
+    padding: 70px 18px;
+  }
+}
+
+.techs__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 90px 0 0 0;
+}
+
+@media screen and (max-width: 768px) {
+  .techs__info {
+    padding: 80px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .techs__info {
+    padding: 60px 0 0 0;
+  }
+}
+
+.techs__subtitle {
+  margin: 0 0 26px;
+  padding: 0;
+  color: #000000;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 1.16;
+  text-indent: -0.04em;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .techs__subtitle {
+    margin: 0 0 22px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .techs__subtitle {
+    margin: 0 0 24px;
+    font-size: 30px;
+    line-height: 1.2;
+  }
+}
+
+.techs__description {
+  margin: 0 0 100px;
+  padding: 0;
+  color: #000000;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.43;
+  text-indent: -0.04em;
+  text-align: center;
+  max-width: 460px;
+}
+
+@media screen and (max-width: 768px) {
+  .techs__description {
+    margin: 0 0 83px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .techs__description {
+    margin: 0 0 50px;
+    font-size: 11px;
+    line-height: 1.45;
+  }
+}
+
+.techs__list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 690px;
+}
+
+@media screen and (max-width: 320px) {
+  .techs__list {
+    max-width: 178px;
+  }
+}
+
+.techs__item {
+  background-color: #E8E8E8;
+  padding: 21px 0;
+  min-width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  text-indent: -0.04em;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .techs__item {
+    min-width: 84px;
+    font-size: 12px;
+    line-height: 1.25;
+  }
+}
