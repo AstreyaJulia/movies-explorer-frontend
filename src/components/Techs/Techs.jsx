@@ -8,15 +8,20 @@ import {getAmount} from "../../utils/helpers";
 const Techs = () => {
   return (
     <section className='techs'>
-      <Container class='techs__container' >
-        <SectionTitle class='techs__title' id='techs' text='Технологии' />
+      <Container class='techs__container'>
+        <SectionTitle class='techs__title' id='techs' text='Технологии'/>
         <div className='techs__info'>
           <h4
             className='techs__subtitle'
           >
-            {TECHS_LIST.length} {getAmount(TECHS_LIST.length, {single: 'технология', multi: 'технологии', count: 'технологий'})}
+            {TECHS_LIST.length} {getAmount(TECHS_LIST.length, {
+            single: 'технология',
+            multi: 'технологии',
+            count: 'технологий'
+          })}
           </h4>
-          <p className='techs__description'>На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
+          <p className='techs__description'>На курсе веб-разработки мы освоили технологии, которые применили в дипломном
+            проекте.</p>
           <ul className='techs__list'>
             {TECHS_LIST.map((item) =>
               <li key={item} className='techs__item'>{item}</li>

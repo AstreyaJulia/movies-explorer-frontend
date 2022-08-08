@@ -10,7 +10,7 @@ const NotFound = () => {
           <h1 className='not-found__status'>404</h1>
           <p className='not-found__text'>Страница не найдена</p>
         </div>
-        <LinkCustom type='route' to={-1} class='not-found__button' text='Назад' />
+        <LinkCustom type='route' to={-1} class='not-found__button' text='Назад'/>
       </div>
     </div>
   );

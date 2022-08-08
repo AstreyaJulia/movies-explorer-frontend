@@ -4,6 +4,7 @@ import './Header.css';
 import logoMain from '../../images/assets/header__logo.svg';
 import logoMovies from '../../images/assets/header__logo_alt.svg';
 import LinkCustom from "../LinkCustom/LinkCustom";
+import {classNames} from "../../utils/helpers";
 
 /**
  * @props type - тип хедера: main - для главной страницы, movies - для страницы с фильмами
@@ -18,15 +19,17 @@ const Header = (props) => {
    */
   const headerTypes = {
     main: {
-      logo: logoMain
+      logo: logoMain,
+      class: 'header_main'
     },
     movies: {
-      logo: logoMovies
+      logo: logoMovies,
+      class: 'header_movies'
     }
   }
 
   return (
-    <header className='header'>
+    <header className={classNames('header', headerTypes[props.type].class)}>
       <Container class='header__container'>
         <LinkCustom type='route' to='/' class='header__logo'>
           <img src={headerTypes[props.type].logo} alt='Логотип'/>

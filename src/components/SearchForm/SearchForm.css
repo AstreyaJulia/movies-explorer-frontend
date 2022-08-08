@@ -15,7 +15,7 @@
 }
 
 .search-form__line {
-  margin: 83px 0 0 ;
+  margin: 83px 0 0;
   background-color: #E8E8E8;
   height: 1px;
   border: none;
@@ -23,13 +23,13 @@
 
 @media screen and (max-width: 768px) {
   .search-form__line {
-    margin: 57px 0 0 ;
+    margin: 57px 0 0;
   }
 }
 
 @media screen and (max-width: 320px) {
   .search-form__line {
-    margin: 44px 0 0 ;
+    margin: 44px 0 0;
   }
 }
 

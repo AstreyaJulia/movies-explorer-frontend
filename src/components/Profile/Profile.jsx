@@ -2,7 +2,7 @@ import React from 'react';
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import LinkCustom from "../LinkCustom/LinkCustom";
-import { classNames } from "../../utils/helpers";
+import {classNames} from "../../utils/helpers";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import Container from "../Container/Container";
 import './Profile.css';
@@ -59,7 +59,7 @@ const Profile = () => {
   const handleLogOut = () => setCurrentUser({})
 
   return (
-    <div className="profile">
+    <>
       <Header type='movies'>
         <Navigation class='movies__navigation'>
           {/* Десктопная навигация*/}
@@ -89,52 +89,58 @@ const Profile = () => {
           </Navigation.Mobile>
         </Navigation>
       </Header>
-      <Container class='profile__container'>
-        <form className="profile__container" onSubmit={handleProfileSubmit}>
-          <h2 className="profile__title">Привет, {currentUser.name}</h2>
-          <label className="profile__label">
-            Имя
-            <input
-              id="name"
-              name="name"
-              type="text"
-              className="profile__input"
-              value={profileData.name || ''}
-              onChange={handleProfileDataChange}
-              disabled={readOnly}
-              required
-              minLength={2}
-            />
-          </label>
-          <label className="profile__label">
-            E-mail
-            <input
-              id="email"
-              name="email"
-              type="email"
-              className="profile__input"
-              value={profileData.email || ''}
-              onChange={handleProfileDataChange}
-              disabled={readOnly}
-              required
-            />
-          </label>
-          <div className='profile__input-group'>
-            <p className='profile__error'>{errorMessage}</p>
-            {
-              readOnly ?
-                <>
-                  <button className="profile__button profile__button-edit"
-                          onClick={handleProfileReadOnlyChange} type='button'>Редактировать
-                  </button>
-                  <button className="profile__button profile__button-signout" onClick={handleLogOut} type='button'>Выйти из аккаунта</button>
-                </> :
-                <button className={classNames("profile__button profile__button-save", profileChanged ? '' : 'profile__button-save_disabled')} disabled={!profileChanged} type='submit'>Сохранить</button>
-            }
-          </div>
-        </form>
-      </Container>
-    </div>
+      <main className="profile">
+        <Container class='profile__container'>
+          <form className="profile__container" onSubmit={handleProfileSubmit}>
+            <h2 className="profile__title">Привет, {currentUser.name}</h2>
+            <label className="profile__label">
+              Имя
+              <input
+                id="name"
+                name="name"
+                type="text"
+                className="profile__input"
+                value={profileData.name || ''}
+                onChange={handleProfileDataChange}
+                disabled={readOnly}
+                required
+                minLength={2}
+              />
+            </label>
+            <label className="profile__label">
+              E-mail
+              <input
+                id="email"
+                name="email"
+                type="email"
+                className="profile__input"
+                value={profileData.email || ''}
+                onChange={handleProfileDataChange}
+                disabled={readOnly}
+                required
+              />
+            </label>
+            <div className='profile__input-group'>
+              <p className='profile__error'>{errorMessage}</p>
+              {
+                readOnly ?
+                  <>
+                    <button className="profile__button profile__button-edit"
+                            onClick={handleProfileReadOnlyChange} type='button'>Редактировать
+                    </button>
+                    <button className="profile__button profile__button-signout" onClick={handleLogOut} type='button'>Выйти
+                      из аккаунта
+                    </button>
+                  </> :
+                  <button
+                    className={classNames("profile__button profile__button-save", profileChanged ? '' : 'profile__button-save_disabled')}
+                    disabled={!profileChanged} type='submit'>Сохранить</button>
+              }
+            </div>
+          </form>
+        </Container>
+      </main>
+    </>
   );
 };
 

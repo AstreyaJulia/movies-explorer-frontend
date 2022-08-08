@@ -1,5 +1,5 @@
 import React from "react";
-import { classNames } from "../../utils/helpers";
+import {classNames} from "../../utils/helpers";
 import LinkCustom from "../LinkCustom/LinkCustom";
 
 const BurgerMenu = (props) => {

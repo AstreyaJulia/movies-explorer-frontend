@@ -1,3 +1,11 @@
+.header_main {
+  background-color: #073042;
+}
+
+.header_movies {
+ background-color: #FFFFFF;
+}
+
 .header__container {
   padding: 18px 60px;
   display: flex;

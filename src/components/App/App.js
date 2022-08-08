@@ -1,4 +1,3 @@
-import React from 'react';
 /* React router DOM v.6 (Switch->Routes, component->element) */
 import {Route, Routes} from 'react-router-dom';
 /* Компоненты */

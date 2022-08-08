@@ -1,7 +1,5 @@
 /* Контент сайта */
 
-import React from "react";
-
 /** Массив ссылок для навигации под промо
  * @type {[{href: string, title: string}]}
  */

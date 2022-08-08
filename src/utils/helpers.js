@@ -24,7 +24,7 @@ export const getAmount = (col, {single: single, multi: multi, count: count}) => 
       return count
     } else if (col === 1) {
       return single
-    } else if (col > 1 && col <=4) {
+    } else if (col > 1 && col <= 4) {
       return multi
     } else if (col >= 5 && col <= 20) {
       return count
