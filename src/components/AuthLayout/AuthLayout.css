@@ -125,6 +125,11 @@
   }
 }
 
+.auth_button_disabled {
+  background-color: #f8f8f8;
+  color: #c2c2c2;
+}
+
 .auth_button:hover {
   opacity: 0.8;
   cursor: pointer;

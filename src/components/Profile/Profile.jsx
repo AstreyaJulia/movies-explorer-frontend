@@ -105,6 +105,7 @@ const Profile = () => {
                 disabled={readOnly}
                 required
                 minLength={2}
+                placeholder='Имя'
               />
             </label>
             <label className="profile__label">
@@ -118,6 +119,7 @@ const Profile = () => {
                 onChange={handleProfileDataChange}
                 disabled={readOnly}
                 required
+                placeholder='E-mail'
               />
             </label>
             <div className='profile__input-group'>

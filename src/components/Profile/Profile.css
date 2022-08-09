@@ -106,12 +106,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color .3s linear;
+  transition: opacity .3s linear;
   align-self: revert;
-}
-
-.profile__button-save:hover {
-  background-color: rgba(52, 86, 243, 0.8);
 }
 
 .profile__button-save_disabled {
@@ -119,7 +115,8 @@
   color: #c2c2c2;
 }
 
-.profile__button-save_disabled:hover {
-  background-color: rgba(248, 248, 248, 0.8);
+.profile__button-save:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
