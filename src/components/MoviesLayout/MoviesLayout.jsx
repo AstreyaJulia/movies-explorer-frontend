@@ -3,7 +3,7 @@ import './MoviesLayout.css';
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import LinkCustom from "../LinkCustom/LinkCustom";
-import {classNames} from "../../utils/helpers";
+import { classNames } from "../../utils/helpers";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";

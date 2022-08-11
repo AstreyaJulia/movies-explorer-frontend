@@ -1,7 +1,7 @@
 import React from "react";
 import './NavTab.css';
 import Container from "../Container/Container";
-import {NAV_MENU} from "../../utils/constants";
+import { NAV_MENU } from "../../utils/constants";
 import LinkCustom from "../LinkCustom/LinkCustom";
 
 const NavTab = () => {

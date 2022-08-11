@@ -2,7 +2,7 @@ import React from 'react';
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import LinkCustom from "../LinkCustom/LinkCustom";
-import {classNames} from "../../utils/helpers";
+import { classNames } from "../../utils/helpers";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import Container from "../Container/Container";
 import './Profile.css';
@@ -130,7 +130,8 @@ const Profile = () => {
                     <button className="profile__button profile__button-edit"
                             onClick={handleProfileReadOnlyChange} type='button'>Редактировать
                     </button>
-                    <button className="profile__button profile__button-signout" onClick={handleLogOut} type='button'>Выйти
+                    <button className="profile__button profile__button-signout" onClick={handleLogOut}
+                            type='button'>Выйти
                       из аккаунта
                     </button>
                   </> :

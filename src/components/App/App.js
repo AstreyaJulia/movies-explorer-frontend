@@ -1,5 +1,5 @@
 /* React router DOM v.6 (Switch->Routes, component->element) */
-import {Route, Routes} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 /* Компоненты */
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';

@@ -1,5 +1,5 @@
 import React from "react";
-import {classNames} from "../../utils/helpers";
+import { classNames } from "../../utils/helpers";
 import './SectionTitle.css';
 
 /** Заголовок секции с подчеркиванием снизу

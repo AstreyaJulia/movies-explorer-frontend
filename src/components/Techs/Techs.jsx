@@ -2,8 +2,8 @@ import React from "react";
 import './Techs.css';
 import SectionTitle from "../SectionTitle/SectionTitle";
 import Container from "../Container/Container";
-import {TECHS_LIST} from "../../utils/constants";
-import {getAmount} from "../../utils/helpers";
+import { TECHS_LIST } from "../../utils/constants";
+import { getAmount } from "../../utils/helpers";
 
 const Techs = () => {
   return (

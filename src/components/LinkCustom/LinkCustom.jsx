@@ -1,6 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {classNames} from '../../utils/helpers';
+import { Link } from 'react-router-dom';
+import { classNames } from '../../utils/helpers';
 import './LinkCustom.css';
 
 /** Ссылка внутренняя / внешняя

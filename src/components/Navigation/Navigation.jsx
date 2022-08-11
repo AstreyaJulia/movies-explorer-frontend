@@ -1,6 +1,6 @@
 import React from "react";
 import './Navigation.css';
-import {classNames} from "../../utils/helpers";
+import { classNames } from "../../utils/helpers";
 
 /** Навигация
  * Комонент позволяет создавать адаптивные меню -

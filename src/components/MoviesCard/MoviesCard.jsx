@@ -1,6 +1,6 @@
 import React from "react";
 import './MoviesCard.css';
-import {classNames, getHour} from "../../utils/helpers";
+import { classNames, getHour } from "../../utils/helpers";
 import Container from "../Container/Container";
 
 const MoviesCard = (props) => {
@@ -13,6 +13,7 @@ const MoviesCard = (props) => {
         <div className="movies-card__info">
           <div className="movies-card__description">
             <p className="movies-card__title">{nameRU}</p>
+            {/* Для сохраненных фильмов будет отрисована кнопка удаления на месте кнопки лайка */}
             {props.saved
               ?
               <button className='movies-card__delete'>

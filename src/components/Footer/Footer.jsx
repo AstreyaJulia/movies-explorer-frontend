@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from '../Container/Container';
 import LinkCustom from "../LinkCustom/LinkCustom";
-import {SOCIAL_LINKS} from "../../utils/constants";
+import { SOCIAL_LINKS } from "../../utils/constants";
 import './Footer.css';
 
 const Footer = () => {

@@ -4,7 +4,7 @@ import './Header.css';
 import logoMain from '../../images/assets/header__logo.svg';
 import logoMovies from '../../images/assets/header__logo_alt.svg';
 import LinkCustom from "../LinkCustom/LinkCustom";
-import {classNames} from "../../utils/helpers";
+import { classNames } from "../../utils/helpers";
 
 /**
  * @props type - тип хедера: main - для главной страницы, movies - для страницы с фильмами
