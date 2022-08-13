@@ -1,8 +1,12 @@
 import React from "react";
-import './AboutProject.css';
 import Container from "../Container/Container";
 import SectionTitle from "../SectionTitle/SectionTitle";
+import './AboutProject.css';
 
+/** Раздел О проекте
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const AboutProject = () => {
   return (
     <section className='about-project'>

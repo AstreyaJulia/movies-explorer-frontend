@@ -60,11 +60,14 @@
 }
 
 .search-form__input {
-  border: 1px solid #E8E8E8;
+  border: 1px solid rgba(170, 170, 170, 0.2);
   border-radius: 48px;
   padding: 15px 22px;
   width: calc(100% - 46px);
   font-family: 'Inter', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.9;
+  height: 16px;
 }
 
 @media screen and (max-width: 768px) {
@@ -103,7 +106,7 @@
   background-color: #3456F3;
   border-radius: 48px;
   border: none;
-  padding: 6px;
+  padding: 6px 29px;
   display: flex;
   align-items: center;
   position: absolute;
@@ -166,26 +169,26 @@
 
 .search-form__checkbox {
   display: none;
-  width: 36px;
-  height: 20px;
+  width: 34px;
+  height: 14px;
   border-radius: 20px;
 }
 
 .search-form__span {
-  width: 36px;
-  height: 20px;
+  width: 34px;
+  height: 14px;
   background: #EBEBEB;
-  border-radius: 20px;
+  border-radius: 14px;
   position: absolute;
-  top: 0;
+  top: 2px;
   right: 2px;
   transition: .2s linear;
 }
 
 .search-form__span::after {
   content: '';
-  width: 16px;
-  height: 16px;
+  width: 10px;
+  height: 10px;
   background: #F5F5F5;
   border-radius: 50%;
   position: absolute;
@@ -200,5 +203,5 @@
 
 .search-form__checkbox:checked + .search-form__span::after {
   background: #FFFFFF;
-  left: 18px;
+  left: 22px;
 }

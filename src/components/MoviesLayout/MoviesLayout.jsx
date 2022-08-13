@@ -1,56 +1,40 @@
-import React from "react";
-import './MoviesLayout.css';
+import React, { useEffect } from "react";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
-import LinkCustom from "../LinkCustom/LinkCustom";
-import { classNames } from "../../utils/helpers";
-import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 import Preloader from "../Preloader/Preloader";
+import './MoviesLayout.css';
+import Container from "../Container/Container";
 
 const MoviesLayout = (props) => {
 
-  const isLoading = false
-  let loader
-  if (isLoading) loader = <Preloader/>
+  /** Стейт состояния загрузки. Управляет отображением загрузчика */
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  const handleLoadingFinished = () => setIsLoading(false)
+
+  /** FIXME удалить. Эмуляция загрузки для отображения загрузчика */
+  useEffect(() => {
+    setTimeout(handleLoadingFinished, 2000)
+  }, [])
 
   return (
     <>
-      <Header type='movies'>
-        <Navigation class='movies__navigation'>
-          {/* Десктопная навигация*/}
-          <Navigation.Desktop class='movies__navigation-menu movies__navigation-menu_desktop'>
-            <LinkCustom
-              class={classNames('movies__navigation-link', props.saved ? '' : 'movies__navigation-link_active')}
-              type='route'
-              to='/movies'
-              text='Фильмы'
-            />
-            <LinkCustom
-              class={classNames('movies__navigation-link', props.saved ? 'movies__navigation-link_active' : '')}
-              type='route'
-              to='/saved-movies'
-              text='Сохраненные фильмы'
-            />
-            <LinkCustom
-              class={classNames('movies__navigation-link', 'movies__navigation-button movies__navigation-button_gray')}
-              type='route'
-              to='/profile'
-              text='Аккаунт'
-            />
-          </Navigation.Desktop>
-          {/* Мобильная навигация*/}
-          <Navigation.Mobile class='movies__navigation-menu movies__navigation-menu_mobile'>
-            <BurgerMenu page='movies' saved={props.saved}/>
-          </Navigation.Mobile>
-        </Navigation>
+      <Header authUser={true}>
+        <Navigation page={props.saved ? 'saved-movies' : 'movies'} authUser={true}/>
       </Header>
       <main className='movies'>
         <SearchForm/>
-        {loader}
-        <MoviesCardList films={props.films} saved={props.saved}/>
+        {/* Если состояние загрузки true, то покажет загрузчик */}
+        {isLoading ?
+          <Container class='preloader__container'>
+            <Preloader/>
+          </Container>
+          :
+          <MoviesCardList films={props.films} saved={props.saved}/>
+        }
       </main>
       <Footer/>
     </>

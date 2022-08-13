@@ -1,9 +1,15 @@
 import React from 'react';
-import './AuthLayout.css';
 import Container from "../Container/Container";
 import { classNames } from "../../utils/helpers";
 import LinkCustom from "../LinkCustom/LinkCustom";
+import './AuthLayout.css';
 
+/** Раскладка для авторизации / регистрации
+ * @param props.action {string} - тип 'login' - страница логина, 'register' - страница регистрации
+ * заголовок формы, классы берутся из объекта с настройками
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const AuthLayout = (props) => {
 
   const [name, setName] = React.useState("Виталий");
@@ -36,18 +42,31 @@ const AuthLayout = (props) => {
     password: 'Что-то пошло не так...'
   }
 
+  /** Хандл отправки формы
+   * TODO разделить на вход / регистрацию, передавать из App
+   * @param evt
+   */
   const handleFormSubmit = (evt) => {
     evt.preventDefault();
   }
 
+  /** Хандл смены имени
+   * @param evt
+   */
   const handleChangeName = (evt) => {
     setName(evt.target.value);
   }
 
+  /** Хандл смены е-майла
+   * @param evt
+   */
   const handleChangeEmail = (evt) => {
     setEmail(evt.target.value);
   }
 
+  /** Хандл смены пароля
+   * @param evt
+   */
   const handleChangePassword = (evt) => {
     setPassword(evt.target.value);
   }
@@ -93,7 +112,7 @@ const AuthLayout = (props) => {
             {errorStates.name || ''}
           </span>
             </>
-            : null
+            : ''
           }
           <label className="auth__label" htmlFor="email">E-mail</label>
           <input

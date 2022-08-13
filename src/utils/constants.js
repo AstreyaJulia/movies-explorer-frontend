@@ -31,13 +31,20 @@ export const PORTFOLIO_ABOUT = 'Я родился и живу в Саратов�
 /** Массив ссылок для портфолио (ссылки будут открываться в новом окне)
  * @type {[{href: string, title: string}]}
  */
-export const PORTFOLIO_ITEMS = [{
-  title: 'Статичный сайт',
-  href: 'https://astreyajulia.github.io/how-to-learn/'
-}, {
-  title: 'Адаптивный сайт',
-  href: 'https://astreyajulia.github.io/how-to-learn/'
-}, {title: 'Одностраничное приложение', href: 'https://astreyajulia.github.io/russian-travel/'}]
+export const PORTFOLIO_ITEMS = [
+  {
+    title: 'Статичный сайт',
+    href: 'https://astreyajulia.github.io/how-to-learn/'
+  },
+  {
+    title: 'Адаптивный сайт',
+    href: 'https://astreyajulia.github.io/russian-travel/'
+  },
+  {
+    title: 'Одностраничное приложение',
+    href: 'https://astreyajulia.github.io/mesto/'
+  }
+]
 
 /** Массив ссылок на соц-сети (ссылки будут открываться в новом окне)
  * @type {[{href: string, title: string}]}

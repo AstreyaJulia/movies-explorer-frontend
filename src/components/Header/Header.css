@@ -1,21 +1,26 @@
-.header_main {
-  background-color: #073042;
-}
-
-.header_movies {
-  background-color: #FFFFFF;
+.header {
+  -webkit-animation: fadeIn .5s linear;
+  animation: fadeIn .5s linear;
+  animation-delay: 0s;
+  transition: opacity .2s;
 }
 
 .header__container {
-  padding: 18px 60px;
+  padding: 18px 70px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+}
+
+.header__container_auth {
+  justify-content: start;
+  gap: 44px;
 }
 
 @media screen and (max-width: 768px) {
   .header__container {
     padding: 15px 30px;
+    justify-content: space-between;
   }
 }
 
@@ -28,4 +33,21 @@
 .header__logo {
   width: 38px;
   height: 38px;
+}
+
+.header__menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .header__menu {
+    justify-content: end;
+  }
+}
+
+.header__menu_noauth {
+  justify-content: end;
 }

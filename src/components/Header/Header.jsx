@@ -1,45 +1,29 @@
 import React from "react";
 import Container from '../Container/Container';
-import './Header.css';
-import logoMain from '../../images/assets/header__logo.svg';
-import logoMovies from '../../images/assets/header__logo_alt.svg';
 import LinkCustom from "../LinkCustom/LinkCustom";
 import { classNames } from "../../utils/helpers";
+import logoMain from '../../images/assets/header__logo.svg';
+import './Header.css';
 
-/**
- * @props type - тип хедера: main - для главной страницы, movies - для страницы с фильмами
- * @props children - дочерние элементы
+/** Хедер
+ * @param props.authUser {boolean} - навигация для авт. пользователя и для не авт. пользователя
+ * @param props.children {JSX.Element} - дочерние элементы навигации
  * @returns {JSX.Element}
  * @constructor
  */
 const Header = (props) => {
 
-  /** Объект для хранения настроек заголовка для разных страниц
-   * @type {Object}
-   */
-  const headerTypes = {
-    main: {
-      logo: logoMain,
-      class: 'header_main'
-    },
-    movies: {
-      logo: logoMovies,
-      class: 'header_movies'
-    }
-  }
-
   return (
-    <header className={classNames('header', headerTypes[props.type].class)}>
-      <Container class='header__container'>
+    <header className='header'>
+      <Container class={classNames('header__container', props.authUser ? 'header__container_auth' : '')}>
         <LinkCustom type='route' to='/' class='header__logo'>
-          <img src={headerTypes[props.type].logo} alt='Логотип'/>
+          <img src={logoMain} alt='Логотип'/>
         </LinkCustom>
-        <nav className='header__menu'>
+        <nav className={classNames('header__menu', props.authUser ? '' : 'header__menu_noauth')}>
           {props.children}
         </nav>
       </Container>
-    </header>
-  );
+    </header>);
 };
 
 export default Header;

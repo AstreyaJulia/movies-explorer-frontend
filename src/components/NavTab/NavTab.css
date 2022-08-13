@@ -1,14 +1,12 @@
 .nav-tab {
-  background-color: #000000;
+  background-color: transparent;
+  position: absolute;
+  bottom: 30px;
 }
 
-.nav-tab__container {
-  padding: 24px 0;
-}
-
-@media screen and (max-width: 600px) {
-  .nav-tab__container {
-    padding: 25px 0;
+@media screen and (max-width: 320px) {
+  .nav-tab {
+    bottom: 17px;
   }
 }
 
@@ -20,27 +18,33 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 10px;
 }
 
 @media screen and (max-width: 320px) {
   .nav-tab__list {
-    gap: 24px;
+    gap: 6px;
   }
 }
 
 .nav-tab__link {
-  color: #FFFFFF;
+  /*color: #FFFFFF;*/ /* В макете белое, но не видно текста */
+  color: #000000;
   font-weight: 400;
   font-size: 13px;
   line-height: 1.23;
   text-decoration: none;
-  border-bottom: 1px solid #FFFFFF;
+  background-color: #E8E8E8;
+  padding: 10px 23px;
+  border-radius: 10px;
+  display: flex;
 }
 
 @media screen and (max-width: 320px) {
   .nav-tab__link {
-    font-size: 11px;
-    line-height: 1.45;
+    font-size: 10px;
+    line-height: 1.6;
+    padding: 5px 15px;
+    border-radius: 6px;
   }
 }

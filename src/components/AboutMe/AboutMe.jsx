@@ -1,5 +1,4 @@
 import React from "react";
-import './AboutMe.css';
 import Portfolio from "../Portfolio/Portfolio";
 import {
   PORTFOLIO_ABOUT,
@@ -12,7 +11,12 @@ import SectionTitle from "../SectionTitle/SectionTitle";
 import Container from "../Container/Container";
 import aboutMePhoto from '../../images/content/about-me__photo.jpg'
 import LinkCustom from "../LinkCustom/LinkCustom";
+import './AboutMe.css';
 
+/** Раздел Обо мне
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const AboutMe = () => {
   return (
     <section className='about-me'>

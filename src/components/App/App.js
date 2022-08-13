@@ -18,6 +18,7 @@ import './App.css';
 const App = () => {
   return (
     <div className='page'>
+      {/* Роуты */}
       <Routes>
         <Route exact path='/' element={<Main/>}/>
         <Route exact path='/movies' element={<Movies/>}/>

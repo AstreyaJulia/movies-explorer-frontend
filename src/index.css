@@ -6,3 +6,35 @@
 ::-moz-placeholder {
   opacity: 1
 }
+
+.page {
+  opacity: 1;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -webkit-animation-duration: 1ms;
+  animation-duration: 1ms;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  transition-duration: 1ms;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

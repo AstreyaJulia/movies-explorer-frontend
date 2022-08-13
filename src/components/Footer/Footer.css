@@ -1,3 +1,10 @@
+.footer {
+  -webkit-animation: fadeIn .5s linear;
+  animation: fadeIn .5s linear;
+  animation-delay: 0s;
+  transition: opacity .2s;
+}
+
 .footer__container {
   padding: 79px 70px 20px;
 }

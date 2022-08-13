@@ -4,6 +4,10 @@ import LinkCustom from "../LinkCustom/LinkCustom";
 import { SOCIAL_LINKS } from "../../utils/constants";
 import './Footer.css';
 
+/** Футер
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Footer = () => {
   return (
     <footer className='footer'>

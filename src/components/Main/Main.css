@@ -1,21 +1,6 @@
-.main__navigation-menu {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.main__navigation-link {
-  color: #FFFFFF;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
-}
-
-.navigation-menu__button-notauth {
-  margin-left: 10px;
-}
-
-.navigation-menu__button-auth {
-  margin-left: 20px;
+.main {
+  -webkit-animation: fadeIn .5s linear;
+  animation: fadeIn .5s linear;
+  animation-delay: 0s;
+  transition: opacity .2s;
 }

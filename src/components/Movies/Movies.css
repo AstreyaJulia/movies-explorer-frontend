@@ -1,35 +1,6 @@
-.movies__navigation-menu_desktop {
-  align-items: center;
-  gap: 20px;
+.movies {
+  -webkit-animation: fadeIn .5s linear;
+  animation: fadeIn .5s linear;
+  animation-delay: 0s;
+  transition: opacity .2s;
 }
-
-.movies__navigation-link {
-  text-decoration: none;
-  color: #000000;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.29;
-}
-
-.movies__navigation-link:active {
-  font-weight: 500;
-}
-
-.movies__navigation-link_active {
-  font-weight: 500;
-}
-
-.movies__navigation-button_gray {
-  border-radius: 20px;
-  color: #000000;
-  font-size: 14px;
-  line-height: 1.14;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #F5F5F5;
-  padding: 8px 20px;
-  margin-left: 30px;
-}
-

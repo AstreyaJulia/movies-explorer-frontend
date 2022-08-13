@@ -1,4 +1,11 @@
 .profile__container {
+  -webkit-animation: fadeIn .5s linear;
+  animation: fadeIn .5s linear;
+  animation-delay: 0s;
+  transition: opacity .2s;
+}
+
+.profile__container {
   max-width: 410px;
   display: flex;
   flex-direction: column;
