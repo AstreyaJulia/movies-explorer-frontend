@@ -18,7 +18,7 @@ const MoviesCard = (props) => {
         {/* Для сохраненных фильмов будет отрисована кнопка удаления на месте кнопки лайка */}
         {props.saved
           ?
-          <button className='movies-card__delete'>
+          <button className='movies-card__delete' type='button'>
             <svg className='movies-card__delete-icon' width="8" height="8" viewBox="0 0 8 8"
                  xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" clipRule="evenodd"
@@ -27,7 +27,7 @@ const MoviesCard = (props) => {
             </svg>
           </button>
           :
-          <button className={classNames('movies-card__like', liked === "true" ? 'movies-card__like_active' : '')}>
+          <button className={classNames('movies-card__like', liked === "true" ? 'movies-card__like_active' : '')} type='button'>
             <svg
               className={classNames("movies-card__like-icon", liked === "true" ? 'movies-card__like-icon_active' : '')}
               width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">

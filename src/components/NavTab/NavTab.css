@@ -28,8 +28,7 @@
 }
 
 .nav-tab__link {
-  /*color: #FFFFFF;*/ /* В макете белое, но не видно текста */
-  color: #000000;
+  color: #FFFFFF;
   font-weight: 400;
   font-size: 13px;
   line-height: 1.23;

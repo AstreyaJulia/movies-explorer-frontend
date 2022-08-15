@@ -77,10 +77,6 @@
   line-height: 1.23;
 }
 
-.auth__input:focus {
-  outline: none;
-}
-
 .auth__input::placeholder {
   color: #000000;
   font-weight: 500;

@@ -57,7 +57,7 @@ const MoviesCardList = (props) => {
         </ul>
         {/* если фильмов меньше moviesCardsCount или больше или равно кол-ву отображаемых фильмов, то кнопка скроется */}
         {props.films.length >= moviesCardsCount && props.films.length > moviesCardsCount * moviesCardsPagination ?
-          <button className="movie-card-list__button" onClick={moreMoviesHandle}>Ещё</button> : ''}
+          <button className="movie-card-list__button" onClick={moreMoviesHandle} type='button'>Ещё</button> : ''}
       </Container>
     </section>
   );

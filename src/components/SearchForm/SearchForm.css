@@ -98,10 +98,6 @@
   }
 }
 
-.search-form__input:focus {
-  outline: none;
-}
-
 .search-form__button {
   background-color: #3456F3;
   border-radius: 48px;
