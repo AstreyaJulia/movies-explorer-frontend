@@ -1,0 +1,6 @@
+.movies {
+  -webkit-animation: fadeIn .5s linear;
+  animation: fadeIn .5s linear;
+  animation-delay: 0s;
+  transition: opacity .2s;
+}
