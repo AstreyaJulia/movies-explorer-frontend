@@ -53,3 +53,43 @@ export const SOCIAL_LINKS = [{title: 'Яндекс.Практикум', href: 'h
   title: 'Github',
   href: 'https://github.com/AstreyaJulia'
 }, {title: 'Vkontakte', href: 'https://vk.com/astreya'}]
+
+/** Объект настроек для работы с API
+ * @type {{headers: {'Content-Type': string}, serverURL: string}}
+ */
+export const apiSettings = {
+  /*serverURL: 'http://localhost:3001',*/
+  serverURL: 'https://api.julialatyshevadoploma.nomoredomains.xyz',
+  headers: {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+  }
+};
+
+/** Объект настроек для работы с Beat Film API
+ * @type {{headers: {'Content-Type': string}, serverURL: string}}
+ */
+export const beatFilmApiSettings = {
+  serverURL: 'https://api.nomoreparties.co/beatfilm-movies',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  }
+};
+
+/** Объект с ошибками сервера
+ * @type {Object}
+ */
+export const SERVER_ERRORS = {
+  400: 'Одно из полей не заполнено или не прошло валидацию.',
+  401: 'Введен неверный email или пароль.',
+  409: 'Пользователь с введенным email уже зарегистрирован.',
+}
+
+/** Объект с ошибками валидации
+ * @type {Object}
+ */
+export const VALIDATION_ERRORS = {
+  name: 'Имя указано некорректно.',
+  email: 'Указан некорректный адрес почты.',
+}

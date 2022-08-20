@@ -1,41 +1,41 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import { classNames } from "../../utils/helpers";
 import Container from "../Container/Container";
 import './Profile.css';
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useForms } from "../../utils/hooks/useForms";
 
-const Profile = () => {
-
-  /** Стейт данных текущего пользователя (временно)
-   * {name: "Имя", email: "эл. почта"} */
-  /* FIXME временно, удалить */
-  const [currentUser, setCurrentUser] = React.useState({name: "Виталий", email: "pochta@yandex.ru"});
-
-  /** Стейт для соообщений ошибок */
-  const [errorMessage, setErrorMessage] = React.useState('');
-
-  /** Стейт данных профиля
-   * {name: "Имя", email: "эл. почта"} */
-  const [profileData, setProfileData] = React.useState(currentUser);
+const Profile = (props) => {
+  const currentUser = useContext(CurrentUserContext);
+  const { handleChange, errors, isValid, setIsValid} = useForms();
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [isChanged, setIsChanged] = React.useState(false);
 
   /** Стейт, блокирующий редактирование полей профиля */
   const [readOnly, setReadOnly] = React.useState(true);
 
-  /** Стейт, проверяющий изменение полей профиля */
-  const [profileChanged, setProfileChanged] = React.useState(false);
+  React.useEffect(() => {
+    setIsValid(false)
+    setName(currentUser.name || '');
+    setEmail(currentUser.email || '');
+    setIsChanged(false)
+  }, [currentUser])
 
-  /** Изменяет стейт profileData
-   * получает атр. name и value события
-   * @param evt */
-  function handleProfileDataChange(evt) {
-    const {name, value} = evt.target;
-    /* FIXME временно */
-    setErrorMessage('При обновлении профиля произошла ошибка.');
-    setProfileChanged(true);
-    setProfileData({
-      ...profileData, [name]: value
-    })
+  const handleChangeName = (evt) => {
+    if (evt.target.value !== currentUser.name) setIsChanged(true)
+    else setIsChanged(false)
+    setName(evt.target.value)
+    handleChange(evt)
+  }
+
+  const handleChangeEmail = (evt) => {
+    if (evt.target.value !== currentUser.email) setIsChanged(true)
+    else setIsChanged(false)
+    setEmail(evt.target.value)
+    handleChange(evt)
   }
 
   /** Отправка формы редактирования профиля
@@ -43,18 +43,11 @@ const Profile = () => {
    */
   function handleProfileSubmit(evt) {
     evt.preventDefault();
-    /* TODO хандл отправки формы редактирования профиля*/
-    setProfileChanged(false);
-    handleProfileReadOnlyChange();
-    setErrorMessage('');
-    setCurrentUser(profileData);
+    props.handleUpdateUser(name, email)
   }
 
   /** Включает редактирование полей профиля */
-  const handleProfileReadOnlyChange = () => setReadOnly(!readOnly);
-  /* TODO заменить на setReadOnly(false) */
-
-  const handleLogOut = () => setCurrentUser({})
+  const handleProfileReadOnlyChange = () => setReadOnly(false);
 
   return (
     <>
@@ -72,11 +65,11 @@ const Profile = () => {
                 name="name"
                 type="text"
                 className="profile__input"
-                value={profileData.name || ''}
-                onChange={handleProfileDataChange}
-                disabled={readOnly}
+                value={name || ''}
+                onChange={handleChangeName}
                 required
                 minLength={2}
+                disabled={readOnly}
                 placeholder='Имя'
               />
             </label>
@@ -87,29 +80,29 @@ const Profile = () => {
                 name="email"
                 type="email"
                 className="profile__input"
-                value={profileData.email || ''}
-                onChange={handleProfileDataChange}
-                disabled={readOnly}
+                value={email || ''}
+                onChange={handleChangeEmail}
                 required
+                disabled={readOnly}
                 placeholder='E-mail'
               />
             </label>
             <div className='profile__input-group'>
-              <p className='profile__error'>{errorMessage}</p>
+              <p className='profile__error'>{props.error}</p>
               {
                 readOnly ?
                   <>
                     <button className="profile__button profile__button-edit"
                             onClick={handleProfileReadOnlyChange} type='button'>Редактировать
                     </button>
-                    <button className="profile__button profile__button-signout" onClick={handleLogOut}
+                    <button className="profile__button profile__button-signout" onClick={props.signOut}
                             type='button'>Выйти
                       из аккаунта
                     </button>
                   </> :
                   <button
-                    className={classNames("profile__button profile__button-save", profileChanged ? '' : 'profile__button-save_disabled')}
-                    disabled={!profileChanged} type='submit'>Сохранить</button>
+                    className={classNames("profile__button profile__button-save", isChanged ? '' : 'profile__button-save_disabled')}
+                    disabled={!isChanged} type='submit'>Сохранить</button>
               }
             </div>
           </form>

@@ -7,3 +7,17 @@
     min-height: calc(100vh - 74px - 270px);
   }
 }
+
+.movies__text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 79px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 20px;
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+}

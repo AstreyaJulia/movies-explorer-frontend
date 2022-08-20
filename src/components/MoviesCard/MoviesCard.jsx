@@ -1,15 +1,22 @@
 import React from "react";
 import { classNames, getHour } from "../../utils/helpers";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import './MoviesCard.css';
 
 /** Карточка фильма
- * @param props.film {Object} - объект фильма {nameRU, image, duration, liked}
+ * @param props.movie {Object} - объект фильма {nameRU, image, duration, liked}
  * @param props.saved {boolean} - карточка фильма сервиса или сохраненная пользователем (лайкнутая/закладка)
  * @returns {JSX.Element}
  * @constructor
  */
 const MoviesCard = (props) => {
-  const {nameRU, image, duration, liked} = props.film;
+  const {nameRU, image, duration, liked} = props.movie;
+
+  const currentUser = React.useContext(CurrentUserContext);
+
+  function handleSetLike () {
+    props.handleMoviesLike(props.movie)
+  }
 
   return (
     <div className="movies-card">
@@ -18,7 +25,7 @@ const MoviesCard = (props) => {
         {/* Для сохраненных фильмов будет отрисована кнопка удаления на месте кнопки лайка */}
         {props.saved
           ?
-          <button className='movies-card__delete'>
+          <button className='movies-card__delete' type='button' onClick={handleSetLike}>
             <svg className='movies-card__delete-icon' width="8" height="8" viewBox="0 0 8 8"
                  xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" clipRule="evenodd"
@@ -27,7 +34,7 @@ const MoviesCard = (props) => {
             </svg>
           </button>
           :
-          <button className={classNames('movies-card__like', liked === "true" ? 'movies-card__like_active' : '')}>
+          <button className={classNames('movies-card__like', props.movie.owner === currentUser._id ? 'movies-card__like_active' : '')} type='button' onClick={handleSetLike}>
             <svg
               className={classNames("movies-card__like-icon", liked === "true" ? 'movies-card__like-icon_active' : '')}
               width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,7 +52,7 @@ const MoviesCard = (props) => {
         }
         <p className="movies-card__time">{getHour(duration)}</p>
       </div>
-      <img className="movies-card__image" src={`https://api.nomoreparties.co${image.url}`} alt={nameRU}/>
+      <img className="movies-card__image" src={props.saved ? image : `https://api.nomoreparties.co${image.url}`} alt={nameRU}/>
     </div>
   );
 };

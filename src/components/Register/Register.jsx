@@ -2,9 +2,9 @@ import React from 'react';
 import './Register.css';
 import AuthLayout from "../AuthLayout/AuthLayout";
 
-const Register = () => {
+const Register = (props) => {
   return (
-    <AuthLayout action='register'/>
+    <AuthLayout action='register' error={props.error} handleSubmit={props.handleRegisterSubmit}/>
   );
 };
 

@@ -3,6 +3,7 @@ import Container from "../Container/Container";
 import { classNames } from "../../utils/helpers";
 import LinkCustom from "../LinkCustom/LinkCustom";
 import './AuthLayout.css';
+import { useForms } from "../../utils/hooks/useForms";
 
 /** Раскладка для авторизации / регистрации
  * @param props.action {string} - тип 'login' - страница логина, 'register' - страница регистрации
@@ -11,10 +12,6 @@ import './AuthLayout.css';
  * @constructor
  */
 const AuthLayout = (props) => {
-
-  const [name, setName] = React.useState("Виталий");
-  const [email, setEmail] = React.useState("pochta@yandex.ru");
-  const [password, setPassword] = React.useState("какой-топароль");
 
   /** Объект для хранения классов, названий форм, и заголовков
    * @type {Object}
@@ -32,22 +29,39 @@ const AuthLayout = (props) => {
     }
   }
 
-  /** Состояние ошибок инпутов
-   * FIXME временное
-   * @type {Object}
-   */
-  const errorStates = {
-    name: '',
-    email: '',
-    password: 'Что-то пошло не так...'
-  }
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [isSubmit, setIsSubmit] = React.useState(false);
+  const { handleChange, errors, isValid, resetForm, setIsValid} = useForms();
+
+  React.useEffect(() => {
+    setIsSubmit(false)
+    resetForm();
+    setIsValid(true);
+  }, []);
+
+  React.useEffect(() => {
+    setIsSubmit(false)
+    resetForm();
+    setIsValid(true);
+  }, [props.error]);
+
 
   /** Хандл отправки формы
-   * TODO разделить на вход / регистрацию, передавать из App
    * @param evt
    */
   const handleFormSubmit = (evt) => {
     evt.preventDefault();
+    if (!isValid) return
+    setIsSubmit(true)
+    if (authActionsSettings[props.action] === 'register') {
+      if (!name && !password && !email) return
+      props.handleSubmit({password: password, email: email, name: name})
+    } else {
+      if (!password && !email) return
+      props.handleSubmit({password: password, email: email})
+    }
   }
 
   /** Хандл смены имени
@@ -55,6 +69,7 @@ const AuthLayout = (props) => {
    */
   const handleChangeName = (evt) => {
     setName(evt.target.value);
+    handleChange(evt);
   }
 
   /** Хандл смены е-майла
@@ -62,6 +77,7 @@ const AuthLayout = (props) => {
    */
   const handleChangeEmail = (evt) => {
     setEmail(evt.target.value);
+    handleChange(evt);
   }
 
   /** Хандл смены пароля
@@ -69,6 +85,7 @@ const AuthLayout = (props) => {
    */
   const handleChangePassword = (evt) => {
     setPassword(evt.target.value);
+    handleChange(evt);
   }
 
   return (
@@ -96,7 +113,7 @@ const AuthLayout = (props) => {
               <label className="auth__label" htmlFor="name">Имя</label>
               <input
                 id="name"
-                className={classNames('auth__input', errorStates.name ? 'auth__input_state_error' : '')}
+                className={classNames('auth__input', errors.name ? 'auth__input_state_error' : '')}
                 name="name"
                 type="text"
                 onChange={handleChangeName}
@@ -109,7 +126,7 @@ const AuthLayout = (props) => {
                 className='auth__error'
                 id="name-error"
               >
-            {errorStates.name || ''}
+            {errors.name || ''}
           </span>
             </>
             : ''
@@ -117,7 +134,7 @@ const AuthLayout = (props) => {
           <label className="auth__label" htmlFor="email">E-mail</label>
           <input
             id="email"
-            className={classNames('auth__input', errorStates.email ? 'auth__input_state_error' : '')}
+            className={classNames('auth__input', errors.email ? 'auth__input_state_error' : '')}
             name="email"
             type="email"
             onChange={handleChangeEmail}
@@ -130,17 +147,17 @@ const AuthLayout = (props) => {
             className='auth__error'
             id="email-error"
           >
-            {errorStates.email || ''}
+            {errors.email || ''}
           </span>
           <label className="auth__label" htmlFor="password">Пароль</label>
           <input
             id="password"
-            className={classNames('auth__input', errorStates.password ? 'auth__input_state_error' : '')}
+            className={classNames('auth__input', errors.password ? 'auth__input_state_error' : '')}
             name="password"
             type="password"
             onChange={handleChangePassword}
             value={password || ""}
-            minLength="7"
+            minLength="5"
             placeholder='Пароль'
             required
           />
@@ -148,7 +165,7 @@ const AuthLayout = (props) => {
             className='auth__error'
             id="password-error"
           >
-            {errorStates.password || ''}
+            {errors.password || ''}
           </span>
           <div className='auth__input-group'>
             {props.action === 'register' ?
