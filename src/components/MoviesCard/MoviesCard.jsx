@@ -2,6 +2,7 @@ import React from 'react';
 import { classNames, getHour } from '../../utils/helpers';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './MoviesCard.css';
+import LinkCustom from "../LinkCustom/LinkCustom";
 
 /** Карточка фильма
  * @param props.movie {Object} - объект фильма {nameRU, image, duration, liked}
@@ -10,7 +11,7 @@ import './MoviesCard.css';
  * @constructor
  */
 const MoviesCard = (props) => {
-  const {nameRU, image, duration, liked} = props.movie;
+  const {nameRU, image, duration, liked, trailerLink, owner} = props.movie;
 
   const currentUser = React.useContext(CurrentUserContext);
 
@@ -34,7 +35,7 @@ const MoviesCard = (props) => {
             </svg>
           </button>
           :
-          <button className={classNames('movies-card__like', props.movie.owner === currentUser._id ? 'movies-card__like_active' : '')} type='button' onClick={handleSetLike}>
+          <button className={classNames('movies-card__like', owner === currentUser._id ? 'movies-card__like_active' : '')} type='button' onClick={handleSetLike}>
             <svg
               className={classNames('movies-card__like-icon', liked === 'true' ? 'movies-card__like-icon_active' : '')}
               width='10' height='14' viewBox='0 0 10 14' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -52,7 +53,9 @@ const MoviesCard = (props) => {
         }
         <p className='movies-card__time'>{getHour(duration)}</p>
       </div>
-      <img className='movies-card__image' src={props.saved ? image : `https://api.nomoreparties.co${image.url}`} alt={nameRU}/>
+      <LinkCustom type='external' to={trailerLink}>
+        <img className='movies-card__image' src={props.saved ? image : `https://api.nomoreparties.co${image.url}`} alt={nameRU}/>
+      </LinkCustom>
     </div>
   );
 };

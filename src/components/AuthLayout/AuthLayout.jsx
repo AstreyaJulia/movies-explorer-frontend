@@ -57,7 +57,7 @@ const AuthLayout = (props) => {
     evt.preventDefault();
     if (!isValid) return
     setIsSubmit(true)
-    if (authActionsSettings[props.action] === 'register') {
+    if (props.action === 'register') {
       if (!name && !password && !email) return
       props.handleSubmit({password: password, email: email, name: name})
     } else {
@@ -172,16 +172,17 @@ const AuthLayout = (props) => {
             {errors.password || ''}
           </span>
           <div className='auth__input-group'>
+            <p className="auth__button-error">{props.error}</p>
             {props.action === 'register' ?
               <>
-                <button className='auth_button' type='submit'>Зарегистрироваться</button>
+                <button className={classNames('auth_button', !isValid ? 'auth_button_disabled' : '')} type='submit'>Зарегистрироваться</button>
                 <p className='auth__action'>Уже зарегистрированы?
                   <LinkCustom type='route' to='/signin' class='auth__action-link' text='Войти'/>
                 </p>
               </>
               :
               <>
-                <button className='auth_button' type='submit'>Войти</button>
+                <button className={classNames('auth_button', !isValid ? 'auth_button_disabled' : '')} type='submit'>Войти</button>
                 <p className='auth__action'>Ещё не зарегистрированы?
                   <LinkCustom type='route' to='/signup' class='auth__action-link' text='Регистрация'/>
                 </p>

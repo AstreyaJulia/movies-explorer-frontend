@@ -18,9 +18,11 @@ const SearchForm = (props) => {
   }, [])
 
   useEffect(() => {
-    localStorage.setItem(`search-${props.type}`, movie)
-    localStorage.setItem(`isShort-${props.type}`, isShort.toString())
-    props.handleSearchMovies(props.type)
+    if (movie) {
+      localStorage.setItem(`search-${props.type}`, movie)
+      localStorage.setItem(`isShort-${props.type}`, isShort.toString())
+      props.handleSearchMovies(props.type)
+    }
     // eslint-disable-next-line
   }, [isShort])
 
