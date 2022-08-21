@@ -39,12 +39,14 @@ const AuthLayout = (props) => {
     setIsSubmit(false)
     resetForm();
     setIsValid(true);
+    // eslint-disable-next-line
   }, []);
 
   React.useEffect(() => {
     setIsSubmit(false)
     resetForm();
     setIsValid(true);
+    // eslint-disable-next-line
   }, [props.error]);
 
 
@@ -121,6 +123,7 @@ const AuthLayout = (props) => {
                 minLength="2"
                 placeholder='Имя'
                 required
+                disabled={isSubmit}
               />
               <span
                 className='auth__error'
@@ -142,6 +145,7 @@ const AuthLayout = (props) => {
             minLength="2"
             placeholder='E-mail'
             required
+            disabled={isSubmit}
           />
           <span
             className='auth__error'

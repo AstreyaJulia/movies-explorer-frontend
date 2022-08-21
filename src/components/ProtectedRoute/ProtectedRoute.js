@@ -4,7 +4,10 @@ import { Navigate } from "react-router-dom";
 const ProtectedRoute = (props) => {
 
   return (
-    props.loggedIn ? props.children : <Navigate replace to={localStorage.getItem('token') ? props.location : '/'}/>
+    props.loggedIn ?
+      props.children
+      :
+      <Navigate replace to={localStorage.getItem('token') ? props.location : '/'}/>
   )
 }
 

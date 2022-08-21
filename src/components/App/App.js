@@ -54,7 +54,9 @@ const App = () => {
       });
   }
 
-
+  /** Сохранить в сохраненные / удалить из сохраненного
+   * @param movie
+   */
   const handleMoviesLike = (movie) => {
     const isSaved = movie.owner === currentUser._id;
     if (isSaved) {
@@ -73,9 +75,9 @@ const App = () => {
         })
         .catch((err) => {
           setError(err)
-          const timerId = setTimeout(() => {
+          const timer = setTimeout(() => {
             setError(null)
-            clearTimeout(timerId);
+            clearTimeout(timer);
           }, 5000);
         });
     } else {
@@ -98,22 +100,24 @@ const App = () => {
     }
   }
 
+  /** Фильтрация списка фильмов
+   * @param nameList
+   */
   function filterMoviesList(nameList) {
-
     const mainList = JSON.parse(localStorage.getItem(`${nameList}`))
     try {
       const list = movieFilter(mainList, nameList);
       savedMoviesFilter(list, savedMovies, currentUser._id);
-      if (nameList === 'movies') setMovies(list);
-      else setSavedMovies(list);
+      nameList === 'movies' ? setMovies(list) : setSavedMovies(list);
     } catch (err) {
       setError(err.messsage)
     }
-
   }
 
+  /** Загрузка фильмов с beatmovies, фильтрация по поиску
+   * @param type
+   */
   function handleSearchMovies(type) {
-
     setError(null)
     if (localStorage.getItem('movies')) {
       filterMoviesList(type)
@@ -134,6 +138,9 @@ const App = () => {
       })
   }
 
+  /** Поиск в сохраненных фильмах
+   * @param type
+   */
   function handleSearchSavedMovies(type) {
     setError(null)
     setIsLoading(true)
@@ -230,8 +237,10 @@ const App = () => {
     }
   }
 
+  /** Получение данных при монтировании */
   useEffect(() => {
     getContent();
+    // eslint-disable-next-line
   }, [loggedIn]);
 
   return (

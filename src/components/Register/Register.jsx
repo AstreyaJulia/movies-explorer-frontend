@@ -4,7 +4,11 @@ import AuthLayout from "../AuthLayout/AuthLayout";
 
 const Register = (props) => {
   return (
-    <AuthLayout action='register' error={props.error} handleSubmit={props.handleRegisterSubmit}/>
+    <AuthLayout
+      action='register'
+      error={props.error}
+      handleSubmit={props.handleRegisterSubmit}
+    />
   );
 };
 

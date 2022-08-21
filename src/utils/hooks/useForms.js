@@ -1,37 +1,57 @@
 import { useCallback, useState } from 'react';
-import { VALIDATION_ERRORS } from "../constants";
 
 export function useForms() {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(true);
 
-  const regexEmail = /\S+@\S+\.\S+/;
-  const regexName = /^[a-zA-Z ]+$/;
+  /** Объект с настройками валидации для полей
+   * @type {Object}
+   */
+  const validationSettings = {
+    name: {
+      regexp: /^[a-zA-Z, -]+$/,
+      validationError: 'Имя указано некорректно'
+    },
+    email: {
+      regexp: /\S+@\S+\.\S+/,
+      validationError: 'Указан некорректный адрес почты'
+    },
+    password: {
+      regexp: /^[\da-zA-Z]{5,}$/,
+      validationError: 'Пароль должен быть не менее 5 знаков, содержать буквы или цифры'
+    },
+    search: {
+      regexp: /[\d\w\u0430-\u044f]+/ig,
+      validationError: 'Нужно ввести ключевое слово'
+    }
+  }
 
-  const validationEmail = (name, value) => {
-    if (!regexEmail.test(value)) {
-      setErrors({...errors, [name]: VALIDATION_ERRORS.email});
+  /** Валидация поля
+   * @param name
+   * @param value
+   */
+  const fieldValidation = (name, value) => {
+    if (!validationSettings[name].regexp.test(value)) {
+      setErrors({...errors, [name]: validationSettings[name].validationError});
       setIsValid(false)
     }
   }
 
-  const validationName = (name, value) => {
-    if (!regexName.test(value)) {
-      setErrors({...errors, [name]: VALIDATION_ERRORS.name});
-      setIsValid(false)
-    }
-  }
-
+  /** Хандл смены значения, валидации поля, записи ошибок валидации
+   * @param evt
+   */
   const handleChange = (evt) => {
-    const {name, value} = evt.target
+    const {name, value, validationMessage} = evt.target;
     setValues({...values, [name]: value});
-    setErrors({...errors, [name]: evt.target.validationMessage});
+    setErrors({...errors, [name]: validationMessage});
     setIsValid(evt.target.closest('form').checkValidity());
-    if (evt.target.type === 'email' && evt.target.validity.valid) validationEmail(name, value)
-    if (evt.target.id === 'name' && evt.target.validity.valid) validationName(name, value)
+    fieldValidation(name, value)
   };
 
+  /** Сброс значений, ошибок валидации формы
+   * @type {(function(): void)|*}
+   */
   const resetForm = useCallback((newValues = {}, newErrors = {}, newIsValid = false) => {
     setValues(newValues);
     setErrors(newErrors);

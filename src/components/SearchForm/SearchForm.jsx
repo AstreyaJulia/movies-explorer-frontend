@@ -7,19 +7,21 @@ import { classNames } from '../../utils/helpers';
 const SearchForm = (props) => {
   const [movie, setMovie] = useState('');
   const [isShort, setIsShort] = useState(false);
-  const {handleChange, isValid, setIsValid} = useForms();
+  const {handleChange, isValid, setIsValid, errors} = useForms();
   const localStorage = window.localStorage;
 
   useEffect(() => {
     setIsShort(localStorage.getItem(`isShort-${props.type}`) === 'true');
     setMovie(localStorage.getItem(`search-${props.type}`) || '');
     setIsValid(true)
+    // eslint-disable-next-line
   }, [])
 
   useEffect(() => {
     localStorage.setItem(`search-${props.type}`, movie)
     localStorage.setItem(`isShort-${props.type}`, isShort.toString())
     props.handleSearchMovies(props.type)
+    // eslint-disable-next-line
   }, [isShort])
 
   const handleChangeMovie = (evt) => {
@@ -41,8 +43,16 @@ const SearchForm = (props) => {
       <Container class={classNames('search-form__container', isValid ? 'search-form__container_active' : '')}>
         <form className='search-form__box' onSubmit={handleSubmit}>
           <div className='search-form__input-group'>
-            <input type='text' className='search-form__input' placeholder='Фильм' value={movie || ''}
-                   onChange={handleChangeMovie}/>
+            <input
+              id="search"
+              name="search"
+              type='text'
+              className='search-form__input'
+              placeholder='Фильм'
+              value={movie || ''}
+              onChange={handleChangeMovie}
+              required
+            />
             <button className='search-form__button'>
               <svg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'>
                 <path fillRule='evenodd' clipRule='evenodd'
@@ -50,7 +60,7 @@ const SearchForm = (props) => {
                       fill='white'/>
               </svg>
             </button>
-            <span className={classNames('search-form__error', !isValid ? 'search-form__error_active' : '')}>{!isValid ? "Нужно ввести ключевое слово" : ""}</span>
+            <span className={classNames('search-form__error', !isValid ? 'search-form__error_active' : '')}>{errors.search}</span>
           </div>
           <label className='search-form__checkbox-container'>
             <input className='search-form__checkbox' type='checkbox' value={isShort.toString()}

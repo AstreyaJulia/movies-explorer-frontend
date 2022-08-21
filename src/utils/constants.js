@@ -76,20 +76,3 @@ export const beatFilmApiSettings = {
     'Content-Type': 'application/json',
   }
 };
-
-/** Объект с ошибками сервера
- * @type {Object}
- */
-export const SERVER_ERRORS = {
-  400: 'Одно из полей не заполнено или не прошло валидацию.',
-  401: 'Введен неверный email или пароль.',
-  409: 'Пользователь с введенным email уже зарегистрирован.',
-}
-
-/** Объект с ошибками валидации
- * @type {Object}
- */
-export const VALIDATION_ERRORS = {
-  name: 'Имя указано некорректно.',
-  email: 'Указан некорректный адрес почты.',
-}

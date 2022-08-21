@@ -18,10 +18,12 @@ const Profile = (props) => {
   const [readOnly, setReadOnly] = React.useState(true);
 
   React.useEffect(() => {
-    setIsValid(false)
+    setIsValid(false);
+    setReadOnly(true);
     setName(currentUser.name || '');
     setEmail(currentUser.email || '');
     setIsChanged(false)
+    // eslint-disable-next-line
   }, [currentUser])
 
   const handleChangeName = (evt) => {
@@ -43,7 +45,7 @@ const Profile = (props) => {
    */
   function handleProfileSubmit(evt) {
     evt.preventDefault();
-    props.handleUpdateUser(name, email)
+    if (isChanged && isValid) props.handleUpdateUser(name, email);
   }
 
   /** Включает редактирование полей профиля */
@@ -73,6 +75,7 @@ const Profile = (props) => {
                 placeholder='Имя'
               />
             </label>
+            <span className={classNames('profile__error', errors.name ? 'profile__error_visible' : '')}>{errors.name}</span>
             <label className="profile__label">
               E-mail
               <input
@@ -87,6 +90,7 @@ const Profile = (props) => {
                 placeholder='E-mail'
               />
             </label>
+            <span className={classNames('profile__error', errors.email ? 'profile__error_visible' : '')}>{errors.email}</span>
             <div className='profile__input-group'>
               <p className='profile__error'>{props.error}</p>
               {

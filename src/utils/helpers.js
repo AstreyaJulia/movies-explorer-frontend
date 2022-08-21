@@ -44,29 +44,28 @@ export const getHour = (time) => {
   }
 }
 
-/**
+/** Фильтрация сохраненного в localStorage списка фильмов
  * @param moviesList - фильтруемый список фильмов
- * @param type - тип списка
+ * @param type - тип списка в localStorage
  * @returns {Array} - отфильтрованный массив
  */
 export function movieFilter(moviesList, type) {
   const regex = new RegExp(localStorage.getItem(`search-${type}`), 'i');
 
   const arr = moviesList.filter(function (movie) {
-    if(movie.country) movie.country = 'null'
+    if (movie.country) movie.country = 'null'
     return regex.test(movie.nameRU) && (localStorage.getItem(`isShort-${type}`) === 'false' || movie.duration < 40);
   })
-
-  /*const arr = moviesList.filter(movie => {
-    (localStorage.getItem(`isShort-${type}`) === 'true' || movie.duration < 40) && regex.test(movie.nameRU);
-    /* Исправляет пустое значение для поля country фильма */
-    /*if(movie.country) movie.country = 'null';
-  });*/
-
   localStorage.setItem(`resultSearch-${type}`, JSON.stringify(arr))
   return arr
 }
 
+/** Фильтрация сохраненного списка
+ * @param list
+ * @param savedList
+ * @param id
+ * @returns {*}
+ */
 export function savedMoviesFilter(list, savedList, id) {
   if (!list || !savedList) return
   list.forEach(m => {
