@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Container from '../Container/Container';
@@ -20,16 +20,16 @@ const MoviesCardList = (props) => {
 
   /** Хандл обновления стейта кол-ва карточек */
   const handleCardsCountUpdate = () => {
-      if (window.innerWidth < 768) {
-        setMoviesCardsColsCount(1)
-        setMoviesCardsRowsCount(5)
-      } else if (window.innerWidth >= 768 && window.innerWidth < 1280) {
-        setMoviesCardsColsCount(2)
-        setMoviesCardsRowsCount(4)
-      } else if (window.innerWidth >= 1280) {
-        setMoviesCardsColsCount(3)
-        setMoviesCardsRowsCount(4)
-      }
+    if (window.innerWidth < 768) {
+      setMoviesCardsColsCount(1)
+      setMoviesCardsRowsCount(5)
+    } else if (window.innerWidth >= 768 && window.innerWidth < 1280) {
+      setMoviesCardsColsCount(2)
+      setMoviesCardsRowsCount(4)
+    } else if (window.innerWidth >= 1280) {
+      setMoviesCardsColsCount(3)
+      setMoviesCardsRowsCount(4)
+    }
   }
 
   /** Обновление стейта кол-ва карточек при монтировании */
@@ -39,7 +39,12 @@ const MoviesCardList = (props) => {
 
   /** Обновление стейта кол-ва карточек при изменении размера окна */
   useEffect(() => {
-    window.addEventListener('resize', handleCardsCountUpdate)
+    window.addEventListener('resize', handleCardsCountUpdate);
+
+// returned function will be called on component unmount
+    return () => {
+      window.removeEventListener('resize', handleCardsCountUpdate)
+    }
   })
 
   /** Увеличивает кол-во страниц отображаемых карточек */

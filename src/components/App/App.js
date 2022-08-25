@@ -36,6 +36,20 @@ const App = () => {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [error, setError] = React.useState('');
 
+  /** Получает email по токену, проверка валидности токена */
+  const tokenCheck = () => {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      auth.getUser(token)
+        .then((res) => {
+          if (res.data) {
+            setLoggedIn(true);
+          } else setLoggedIn(false);
+        })
+        .catch(err => console.log(err));
+    } else setLoggedIn(false);
+  }
+
   /** Обновить данные пользователя
    * @param name
    * @param email
@@ -239,9 +253,11 @@ const App = () => {
 
   /** Получение данных при монтировании */
   useEffect(() => {
-    getContent();
+    /** Проверка токена, получение email */
+    tokenCheck();
+    if (loggedIn) getContent();
     // eslint-disable-next-line
-  }, [loggedIn]);
+  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -251,7 +267,7 @@ const App = () => {
           <Route
             path='/movies'
             element={
-              <ProtectedRoute location={path} loggedIn={loggedIn}>
+              <ProtectedRoute path={path} loggedIn={loggedIn}>
                 <Movies
                   loggedIn={loggedIn}
                   movies={movies}
@@ -266,7 +282,7 @@ const App = () => {
           <Route
             path='/saved-movies'
             element={
-              <ProtectedRoute location={path} loggedIn={loggedIn}>
+              <ProtectedRoute path={path} loggedIn={loggedIn}>
                 <SavedMovies
                   loggedIn={loggedIn}
                   movies={savedMovies}
@@ -281,7 +297,7 @@ const App = () => {
           <Route
             path='/profile'
             element={
-              <ProtectedRoute location={path} loggedIn={loggedIn}>
+              <ProtectedRoute path={path} loggedIn={loggedIn}>
                 <Profile
                   handleUpdateUser={handleUpdateUser}
                   signOut={handleSignOut}

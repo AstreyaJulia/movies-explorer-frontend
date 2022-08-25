@@ -10,7 +10,7 @@ export function useForms() {
    */
   const validationSettings = {
     name: {
-      regexp: /^[a-zA-Z, -]+$/,
+      regexp: /[\d\w\u0430-\u044f]+/ig,
       validationError: 'Имя указано некорректно'
     },
     email: {

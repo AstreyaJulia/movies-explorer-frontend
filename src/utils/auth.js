@@ -63,3 +63,16 @@ export const signout = () => {
   })
     .then((res) => handleResponse(res));
 }
+
+/** Получает email по токену, проверка валидности токена
+ * @param token - jwt-токен
+ * @returns {Promise<any>}
+ */
+export const getUser = (token) => {
+  return fetch(`${apiSettings.serverURL}/users/me`, {
+    method: "GET",
+    headers: {authorization: 'Bearer ' + token, ...apiSettings.headers},
+    credentials: 'include',
+  })
+    .then((res) => handleResponse(res))
+}
