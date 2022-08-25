@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Container from '../Container/Container';
+import { WIDTH_BREAKPOINTS } from "../../utils/constants";
 
 /**
  * @param props.movies {Array} - массив с фильмами
@@ -20,15 +21,15 @@ const MoviesCardList = (props) => {
 
   /** Хандл обновления стейта кол-ва карточек */
   const handleCardsCountUpdate = () => {
-    if (window.innerWidth < 768) {
-      setMoviesCardsColsCount(1)
-      setMoviesCardsRowsCount(5)
-    } else if (window.innerWidth >= 768 && window.innerWidth < 1280) {
-      setMoviesCardsColsCount(2)
-      setMoviesCardsRowsCount(4)
-    } else if (window.innerWidth >= 1280) {
-      setMoviesCardsColsCount(3)
-      setMoviesCardsRowsCount(4)
+    if (window.innerWidth < WIDTH_BREAKPOINTS[0].max) {
+      setMoviesCardsColsCount(WIDTH_BREAKPOINTS[0].cols)
+      setMoviesCardsRowsCount(WIDTH_BREAKPOINTS[0].rows)
+    } else if (window.innerWidth >= WIDTH_BREAKPOINTS[1].min && window.innerWidth < WIDTH_BREAKPOINTS[1].max) {
+      setMoviesCardsColsCount(WIDTH_BREAKPOINTS[1].cols)
+      setMoviesCardsRowsCount(WIDTH_BREAKPOINTS[1].rows)
+    } else if (window.innerWidth >= WIDTH_BREAKPOINTS[2].min) {
+      setMoviesCardsColsCount(WIDTH_BREAKPOINTS[2].cols)
+      setMoviesCardsRowsCount(WIDTH_BREAKPOINTS[2].rows)
     }
   }
 

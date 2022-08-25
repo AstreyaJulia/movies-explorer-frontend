@@ -2,6 +2,8 @@
  * @param classes - список классов
  * @returns {string} - строка
  */
+import { SHORTMOVIES_DURATION } from "./constants";
+
 export function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -54,7 +56,7 @@ export function movieFilter(moviesList, type) {
 
   const arr = moviesList.filter(function (movie) {
     if (movie.country) movie.country = 'null'
-    return regex.test(movie.nameRU) && (localStorage.getItem(`isShort-${type}`) === 'false' || movie.duration < 40);
+    return regex.test(movie.nameRU) && (localStorage.getItem(`isShort-${type}`) === 'false' || movie.duration < SHORTMOVIES_DURATION);
   })
   localStorage.setItem(`resultSearch-${type}`, JSON.stringify(arr))
   return arr
@@ -68,14 +70,26 @@ export function movieFilter(moviesList, type) {
  */
 export function savedMoviesFilter(list, savedList, id) {
   if (!list || !savedList) return
-  list.forEach(m => {
-    const saved = savedList.find(i => i.id === m.movieId && i.nameRU === m.nameRU)
+  list.forEach(movie => {
+    const saved = savedList.find(savedMovie => savedMovie.movieId === movie.id)
     if (saved) {
-      m.owner = id
-      m._id = saved._id
+      movie.owner = id
+      movie._id = saved._id
     }
-    return m
+    return movie
   })
-
   return list
+}
+
+/** Нормализатор объекта фильма
+ * заполняет незаполненные обязательные поля
+ * @param movie
+ */
+export const movieNormalizer = (movie) => {
+  /** Ключи объекта фильма, которые надо проверить */
+  const movieKeys = ['country', 'nameEN', 'director'];
+
+  movieKeys.map((key) => {
+    if (movie[key] === '' || movie[key] === null) movie[key] = 'null'
+  })
 }

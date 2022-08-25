@@ -22,7 +22,7 @@ const MoviesLayout = (props) => {
         <Navigation page={props.saved ? 'saved-movies' : 'movies'} authUser={props.loggedIn}/>
       </Header>
       <main className='movies'>
-        <SearchForm handleSearchMovies={props.handleSearchMovies} type={props.saved ? 'savedMovies' : 'movies'}/>
+        <SearchForm handleSearchMovies={props.handleSearchMovies} type={props.saved ? 'savedMovies' : 'movies'} isLoading={props.isLoading}/>
         {props.error || (props.movies.length === 0 && isShow) ?
             <Container>
               <p className='movies__text'>{props.error || (props.movies.length === 0 && isShow) ? 'Ничего не найдено' : ''}</p>

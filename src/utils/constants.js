@@ -76,3 +76,20 @@ export const beatFilmApiSettings = {
     'Content-Type': 'application/json',
   }
 };
+
+export const SHORTMOVIES_DURATION = 40;
+
+export const WIDTH_BREAKPOINTS = [
+  {min: 0,
+  max: 768,
+  cols: 1,
+  rows: 5},
+  {min: 768,
+    max: 1280,
+    cols: 2,
+    rows: 4},
+  {min: 1280,
+    max: 8400,
+    cols: 2,
+    rows: 4},
+]

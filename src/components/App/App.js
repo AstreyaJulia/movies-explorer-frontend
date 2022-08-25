@@ -18,7 +18,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 /* Стили */
 import './App.css';
-import { movieFilter, savedMoviesFilter } from "../../utils/helpers";
+import { movieFilter, movieNormalizer, savedMoviesFilter } from "../../utils/helpers";
 
 /** Основной компонент приложения
  * @returns {JSX.Element}
@@ -33,22 +33,8 @@ const App = () => {
   const [movies, setMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(!!localStorage.getItem("jwt"));
   const [error, setError] = React.useState('');
-
-  /** Получает email по токену, проверка валидности токена */
-  const tokenCheck = () => {
-    const token = localStorage.getItem("jwt");
-    if (token) {
-      auth.getUser(token)
-        .then((res) => {
-          if (res.data) {
-            setLoggedIn(true);
-          } else setLoggedIn(false);
-        })
-        .catch(err => console.log(err));
-    } else setLoggedIn(false);
-  }
 
   /** Обновить данные пользователя
    * @param name
@@ -95,6 +81,7 @@ const App = () => {
           }, 5000);
         });
     } else {
+      movieNormalizer(movie);
       mainApi.sendMovie(movie)
         .then((newMovie) => {
           movie.owner = currentUser._id
@@ -251,13 +238,33 @@ const App = () => {
     }
   }
 
+  /** Получает email по токену, проверка валидности токена */
+  const tokenCheck = () => {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      auth.getUser(token)
+        .then((res) => {
+          if (res.data) {
+            setLoggedIn(true);
+          } else {
+            setLoggedIn(false)
+            handleSignOut();
+          }
+        })
+        .catch(err => {
+          console.log(err)
+          if (err === 'Токен авторизации не передан или невалиден') setLoggedIn(false)
+        });
+    } else setLoggedIn(false);
+  }
+
   /** Получение данных при монтировании */
   useEffect(() => {
     /** Проверка токена, получение email */
     tokenCheck();
     if (loggedIn) getContent();
     // eslint-disable-next-line
-  }, []);
+  }, [loggedIn]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
