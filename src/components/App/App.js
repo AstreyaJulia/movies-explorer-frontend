@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 /* React router DOM v.6 (Switch->Routes, component->element) */
-import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { mainApi } from '../../utils/MainApi';
-import { moviesApi } from '../../utils/MoviesApi';
+import {Navigate, Route, Routes, useLocation, useNavigate} from 'react-router-dom';
+import {CurrentUserContext} from '../../contexts/CurrentUserContext';
+import {mainApi} from '../../utils/MainApi';
+import {moviesApi} from '../../utils/MoviesApi';
 import * as auth from '../../utils/auth';
 
 /* Компоненты */
@@ -18,7 +18,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 /* Стили */
 import './App.css';
-import { movieFilter, movieNormalizer, savedMoviesFilter } from "../../utils/helpers";
+import {movieFilter, movieNormalizer, savedMoviesFilter} from "../../utils/helpers";
 
 /** Основной компонент приложения
  * @returns {JSX.Element}
@@ -44,6 +44,11 @@ const App = () => {
     mainApi.sendUserInfo(name, email)
       .then((res) => {
         setCurrentUser(res.data);
+        setError('Профиль успешно изменен')
+        const timer = setTimeout(() => {
+          setError('')
+          clearTimeout(timer);
+        }, 5000);
       })
       .catch((err) => {
         setError(err)
@@ -158,11 +163,11 @@ const App = () => {
    * @param registerData - рег. данные {email: string, password: string, name: string}
    */
   function handleRegisterSubmit(registerData) {
-    auth.register(registerData)
+    auth
+      .register(registerData)
       .then((res) => {
-        if (res.token) {
-          setLoggedIn(true)
-          history.push('/movies');
+        if (res.data._id) {
+          handleLoginSubmit({email: registerData.email, password: registerData.password});
         }
       })
       .catch((err) => {
