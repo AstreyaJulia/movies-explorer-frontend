@@ -90,6 +90,6 @@ export const WIDTH_BREAKPOINTS = [
     rows: 4},
   {min: 1280,
     max: 8400,
-    cols: 2,
+    cols: 3,
     rows: 4},
 ]

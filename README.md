@@ -4,3 +4,5 @@
 [Ссылка на проект](http://julialatyshevadoploma.nomoredomains.xyz/)
 
 [Ссылка на макет Figma](https://www.figma.com/file/FJaDZzQ9Dex5xDF9NKSkI1/Diploma)
+
+[Пулл-реквест](https://github.com/AstreyaJulia/movies-explorer-frontend/pull/2)

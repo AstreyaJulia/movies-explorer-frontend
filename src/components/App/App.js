@@ -227,7 +227,6 @@ const App = () => {
           setCurrentUser(res[1].data);
           localStorage.setItem('savedMovies', JSON.stringify(res[0].data))
           setSavedMovies(res[0].data);
-          if (localStorage.getItem('resultSearch-savedMovies')) setSavedMovies(JSON.parse(localStorage.getItem('resultSearch-savedMovies')));
           if (localStorage.getItem('resultSearch-movies')) {
             const list = savedMoviesFilter(JSON.parse(localStorage.getItem('resultSearch-movies')), res[0].data, res[1].data._id);
             setMovies(list)

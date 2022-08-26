@@ -17,7 +17,7 @@ const MoviesCardList = (props) => {
   const [moviesCardsRowsCount, setMoviesCardsRowsCount] = React.useState(0);
 
   /** Стейт пагинации фильмов для кнопки Еще */
-  const [moviesCardsPagination, setMoviesCardsPagination] = React.useState(1);
+  const [moviesCardsPagination, setMoviesCardsPagination] = React.useState(0);
 
   /** Хандл обновления стейта кол-ва карточек */
   const handleCardsCountUpdate = () => {
@@ -38,6 +38,11 @@ const MoviesCardList = (props) => {
     handleCardsCountUpdate()
   }, [])
 
+  useEffect(() => {
+    setMoviesCardsPagination(0)
+    // eslint-disable-next-line
+  }, [localStorage.getItem(`search-movies`), localStorage.getItem(`search-savedMovies`)])
+
   /** Обновление стейта кол-ва карточек при изменении размера окна */
   useEffect(() => {
     window.addEventListener('resize', handleCardsCountUpdate);
@@ -49,21 +54,23 @@ const MoviesCardList = (props) => {
   })
 
   /** Увеличивает кол-во страниц отображаемых карточек */
-  const moreMoviesHandle = () => setMoviesCardsPagination(moviesCardsPagination + 1)
+  const moreMoviesHandle = () => {
+    setMoviesCardsPagination(moviesCardsPagination + 1)
+  }
 
   return (
     <section className='movie-card-list'>
       <Container class='movie-card-list__container'>
         <ul className='movie-card-list__movies-cards'>
           {/* Берем от начала массива карточек произведение кол-ва карточек в объекте на кол-во отображаемых страниц */}
-          {props.movies.length > 0 ? props.movies.slice(0, moviesCardsColsCount * (moviesCardsPagination + moviesCardsRowsCount)).map((movie) =>
+          {props.movies.length > 0 ? props.movies.slice(0, moviesCardsColsCount * moviesCardsRowsCount + (moviesCardsPagination * moviesCardsColsCount)).map((movie) =>
             <li key={props.saved ? movie._id : movie.id}>
               <MoviesCard movie={movie} saved={props.saved} handleMoviesLike={props.handleMoviesLike}/>
             </li>
           ) : null}
         </ul>
         {/* если фильмов меньше moviesCardsCount или больше или равно кол-ву отображаемых фильмов, то кнопка скроется */}
-        {props.movies.length >= moviesCardsColsCount * (moviesCardsPagination + moviesCardsRowsCount) && props.movies.length > moviesCardsColsCount * (moviesCardsPagination + moviesCardsRowsCount) ?
+        {props.movies.length >= moviesCardsColsCount * moviesCardsRowsCount + (moviesCardsPagination * moviesCardsColsCount) && props.movies.length > moviesCardsColsCount * moviesCardsRowsCount + (moviesCardsPagination * moviesCardsColsCount) ?
           <button className='movie-card-list__button' onClick={moreMoviesHandle}>Ещё</button> : ''}
       </Container>
     </section>
