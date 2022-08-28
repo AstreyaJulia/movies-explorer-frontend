@@ -1,12 +1,16 @@
 import React from 'react';
-import MoviesLayout from "../MoviesLayout/MoviesLayout";
+import MoviesLayout from '../MoviesLayout/MoviesLayout';
 import './Movies.css';
 
-/* FIXME временный набор карточек */
-import films from '../../utils/beatfilm-movies.json';
-
-const Movies = () => {
-  return <MoviesLayout films={films}/>
+const Movies = (props) => {
+  return <MoviesLayout
+    movies={props.movies}
+    loggedIn={props.loggedIn}
+    isLoading={props.isLoading}
+    error={props.error}
+    handleMoviesLike={props.handleMoviesLike}
+    handleSearchMovies={props.handleSearchMovies}
+  />
 };
 
 export default Movies;

@@ -77,6 +77,10 @@
   line-height: 1.23;
 }
 
+.auth__input:focus {
+  outline: none;
+}
+
 .auth__input::placeholder {
   color: #000000;
   font-weight: 500;
@@ -165,4 +169,15 @@
   .auth__action-link {
     margin-left: 7px;
   }
+}
+
+.auth__button-error {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  color: #EE3465;
+  text-align: center;
+  margin: 0 0 20px;
+  height: 13px;
 }

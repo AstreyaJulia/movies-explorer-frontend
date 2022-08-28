@@ -53,3 +53,43 @@ export const SOCIAL_LINKS = [{title: 'Яндекс.Практикум', href: 'h
   title: 'Github',
   href: 'https://github.com/AstreyaJulia'
 }, {title: 'Vkontakte', href: 'https://vk.com/astreya'}]
+
+/** Объект настроек для работы с API
+ * @type {{headers: {'Content-Type': string}, serverURL: string}}
+ */
+export const apiSettings = {
+  /*serverURL: 'http://localhost:3001',*/
+  serverURL: 'https://api.julialatyshevadoploma.nomoredomains.xyz',
+  headers: {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+  }
+};
+
+/** Объект настроек для работы с Beat Film API
+ * @type {{headers: {'Content-Type': string}, serverURL: string}}
+ */
+export const beatFilmApiSettings = {
+  serverURL: 'https://api.nomoreparties.co/beatfilm-movies',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  }
+};
+
+export const SHORTMOVIES_DURATION = 40;
+
+export const WIDTH_BREAKPOINTS = [
+  {min: 0,
+  max: 768,
+  cols: 1,
+  rows: 5},
+  {min: 768,
+    max: 1280,
+    cols: 2,
+    rows: 4},
+  {min: 1280,
+    max: 8400,
+    cols: 3,
+    rows: 4},
+]

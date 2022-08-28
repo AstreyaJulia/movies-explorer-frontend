@@ -1,10 +1,17 @@
 import React from 'react';
 import './SavedMovies.css';
-import MoviesLayout from "../MoviesLayout/MoviesLayout";
-import filmsSaved from "../../utils/beatfilm-movies-saved.json";
+import MoviesLayout from '../MoviesLayout/MoviesLayout';
 
-const SavedMovies = () => {
-  return <MoviesLayout saved={true} films={filmsSaved.slice(0, 12)}/>; /* TODO проверить с пустым состоянием: передать в пропс films пустой массив [] */
+const SavedMovies = (props) => {
+  return <MoviesLayout
+    saved={true}
+    movies={props.movies}
+    loggedIn={props.loggedIn}
+    isLoading={props.isLoading}
+    error={props.error}
+    handleMoviesLike={props.handleMoviesLike}
+    handleSearchMovies={props.handleSearchMovies}
+  />;
 };
 
 export default SavedMovies;

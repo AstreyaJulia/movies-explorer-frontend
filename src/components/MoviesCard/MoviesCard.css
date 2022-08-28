@@ -90,6 +90,20 @@
   align-self: center;
 }
 
+@media screen and (max-width: 768px) {
+  .movies-card__delete {
+    opacity: 1;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 36px;
+    background-color: #F5F5F5;
+    transition: opacity .3s linear;
+  }
+}
+
 .movies-card__delete:hover {
   opacity: 1;
   border: none;
@@ -100,6 +114,12 @@
   border-radius: 36px;
   background-color: #F5F5F5;
   transition: opacity .3s linear;
+}
+
+@media screen and (max-width: 768px) {
+  .movies-card__delete:hover {
+    opacity: 0.8;
+  }
 }
 
 .movies-card__time {
